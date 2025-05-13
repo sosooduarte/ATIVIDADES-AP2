@@ -1,0 +1,42 @@
+INÍCIO
+
+CONSTANTES:
+    COIN_TOSSES ← 100
+    LINES_IN_DIAGRAM ← 30
+
+ENTRADA:
+    p ← primeiro argumento de entrada (probabilidade do experimento 1)
+    p2 ← segundo argumento de entrada (probabilidade do experimento 2)
+    m ← terceiro argumento de entrada (número de experimentos)
+
+FUNÇÃO toss(probabilidade):
+    sorteie um número aleatório entre 0 e 1
+    SE probabilidade ≥ número sorteado
+        RETORNE verdadeiro (cara)
+    SENÃO
+        RETORNE falso (coroa)
+
+FUNÇÃO experiment(num, probabilidade):
+    contador ← 0
+    PARA i de 1 até num:
+        resultado ← toss(probabilidade)
+        SE resultado for verdadeiro:
+            contador ← contador + 1
+    RETORNE contador
+
+PROCESSO PRINCIPAL:
+    Crie uma nova lista de dados chamada data1
+    PARA i de 1 até m:
+        resultado ← experiment(COIN_TOSSES, p)
+        data1.insira(resultado)
+
+    Crie uma nova lista de dados chamada data2
+    PARA i de 1 até m:
+        resultado ← experiment(COIN_TOSSES, p2)
+        data2.insira(resultado)
+
+    data_final ← data1 + data2
+    IMPRIMA data_final em formato textual
+    IMPRIMA o gráfico usando data_final com LINES_IN_DIAGRAM linhas e eixo x de até COIN_TOSSES
+
+FIM
