@@ -1,0 +1,90 @@
+// Node.java
+package listaSimplesmenteEncadeada;
+
+public class Node {
+    private String element;
+    private Node next;
+
+    public Node(String s, Node n) {
+        element = s;
+        next = n;
+    }
+
+    public String getElement() { return element; }
+    public Node getNext() { return next; }
+
+    public void setElement(String newElem) { element = newElem; }
+    public void setNext(Node newNext) { next = newNext; }
+}
+
+
+
+
+
+// EmptySLinkedList.java
+package listaSimplesmenteEncadeada;
+
+public class EmptySLinkedList extends RuntimeException {
+    public EmptySLinkedList(String message) {
+        super(message);
+    }
+}
+
+
+
+
+
+// SLinkedList.java
+package listaSimplesmenteEncadeada;
+
+public class SLinkedList {
+    protected Node head;
+    protected Node tail;
+    protected long size;
+
+    public SLinkedList() {
+        head = tail = null;
+        size = 0;
+    }
+
+    public void addHead(String element) {
+        Node newNode = new Node(element, head);
+        head = newNode;
+        if (size == 0) tail = head;
+        size++;
+    }
+
+    public void addTail(String element) {
+        Node newNode = new Node(element, null);
+        if (size == 0) {
+            head = tail = newNode;
+        } else {
+            tail.setNext(newNode);
+            tail = newNode;
+        }
+        size++;
+    }
+
+    public void removeFirst() {
+        if (head == null) throw new EmptySLinkedList("Lista vazia!");
+        Node temp = head;
+        head = head.getNext();
+        temp.setNext(null);
+        size--;
+        if (size == 0) tail = null;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("[");
+        Node current = head;
+        while (current != null) {
+            sb.append(current.getElement());
+            if (current.getNext() != null) sb.append(", ");
+            current = current.getNext();
+        }
+        sb.append("]");
+        return sb.toString();
+    }
+}
+
