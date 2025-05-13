@@ -1,0 +1,40 @@
+// ArrayCopier.java
+public class ArrayCopier {
+
+    public static void main(String[] args) {
+        int[] origem = {7, 4, 8, 1, 4, 1, 4};
+        float[] destino = copiarAntesDoValor(origem, 1);
+
+        imprimirArray("array1", origem);
+        imprimirArray("array2", destino);
+    }
+
+    public static float[] copiarAntesDoValor(int[] origem, int limite) {
+        int count = 0;
+        while (count < origem.length && origem[count] != limite) {
+            count++;
+        }
+
+        float[] destino = new float[count];
+        for (int i = 0; i < count; i++) {
+            destino[i] = origem[i];
+        }
+        return destino;
+    }
+
+    public static void imprimirArray(String nome, int[] array) {
+        System.out.print(nome + ": [ ");
+        for (int num : array) {
+            System.out.print(num + " ");
+        }
+        System.out.println("]");
+    }
+
+    public static void imprimirArray(String nome, float[] array) {
+        System.out.print(nome + ": [ ");
+        for (float num : array) {
+            System.out.print(num + " ");
+        }
+        System.out.println("]");
+    }
+}
